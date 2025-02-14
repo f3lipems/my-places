@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_places/widgets/image_input.dart';
 
 class PlaceFormScreen extends StatefulWidget {
   const PlaceFormScreen({super.key});
@@ -14,8 +15,41 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
       appBar: AppBar(
         title: Text('Novo Lugar'),
       ),
-      body: Center(
-        child: Text('Formulário'),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  spacing: 10,
+                  children: <Widget>[
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Título',
+                      ),
+                    ),
+                    ImageInput()
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.add),
+                label: const Text('Adicionar'),
+                style: ElevatedButton.styleFrom(
+                  textStyle: TextStyle(
+                    color: Theme.of(context).secondaryHeaderColor,
+                  ),
+                ),
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
