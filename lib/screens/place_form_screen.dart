@@ -9,6 +9,16 @@ class PlaceFormScreen extends StatefulWidget {
 }
 
 class _PlaceFormScreenState extends State<PlaceFormScreen> {
+
+  final _titleController = TextEditingController();
+
+  void _submitForm() {
+    if (_titleController.text.isEmpty) {
+      return;
+    }
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +36,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                   spacing: 10,
                   children: <Widget>[
                     TextFormField(
+                      controller: _titleController,
                       decoration: InputDecoration(
                         labelText: 'Título',
                       ),
@@ -45,7 +56,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                     color: Theme.of(context).secondaryHeaderColor,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: _submitForm,
               ),
             ),
           ],
