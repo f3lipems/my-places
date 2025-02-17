@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:my_places/models/place.dart';
 
-class GreatePlace with ChangeNotifier {
+class GreatePlaces with ChangeNotifier {
   final List<Place> _items = [];
 
   List<Place> get items => [..._items];

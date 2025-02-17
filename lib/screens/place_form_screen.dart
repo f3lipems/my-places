@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:my_places/models/place.dart';
-import 'package:my_places/providers/greate_place.dart';
+import 'package:my_places/providers/greate_places.dart';
 import 'package:my_places/widgets/image_input.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +25,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       return;
     }
-    Provider.of<GreatePlace>(context, listen: false).addPlace(
+    Provider.of<GreatePlaces>(context, listen: false).addPlace(
       _titleController.text,
       // {} as PlaceLocation,
       _pickedImage!,
