@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_places/providers/greate_place.dart';
 import 'package:my_places/screens/place_form_screen.dart';
 import 'package:my_places/screens/places_list_screen.dart';
 import 'package:my_places/utils/app_theme.dart';
+import 'package:provider/provider.dart';
 
 import 'utils/app_routes.dart';
 
@@ -15,13 +17,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My Places',
-      theme: AppTheme.theme,
-      home: const PlacesListScreen(),
-      routes: {
-        AppRoutes.PLACE_FORM: (ctx) => const PlaceFormScreen(),
-      },
+    return ChangeNotifierProvider(
+      create: (BuildContext ctx) => GreatePlace(),
+      child: MaterialApp(
+        title: 'My Places',
+        theme: AppTheme.theme,
+        home: const PlacesListScreen(),
+        routes: {
+          AppRoutes.placeForm: (ctx) => const PlaceFormScreen(),
+        },
+      ),
     );
   }
 }
