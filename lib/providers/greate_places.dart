@@ -14,6 +14,7 @@ class GreatePlaces with ChangeNotifier {
   Future<void> loadPlaces() async {
     final dataList = await AppDb.getData('places');
     _items.clear();
+    print('tamanho da lista: ' + dataList.length.toString());
     for (var item in dataList) {
       _items.add(Place(
         id: item['id'],
@@ -40,13 +41,15 @@ class GreatePlaces with ChangeNotifier {
       location: PlaceLocation(address: '', latitude: 0, longitude: 0),
       image: image,
     );
-    _items.add(newPlace);
+    // _items.add(newPlace);
 
     AppDb.insert('places', {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path,
     });
+
+    loadPlaces();
     
     notifyListeners();
   }
