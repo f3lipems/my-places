@@ -11,6 +11,20 @@ class GreatePlaces with ChangeNotifier {
 
   List<Place> get items => [..._items];
 
+  Future<void> loadPlaces() async {
+    final dataList = await AppDb.getData('places');
+    _items.clear();
+    for (var item in dataList) {
+      _items.add(Place(
+        id: item['id'],
+        title: item['title'],
+        image: File(item['image']),
+        location: PlaceLocation(address: '', latitude: 0, longitude: 0),
+      ));
+    }
+    notifyListeners();
+  }
+
   int get itemsCount {
     return _items.length;
   }
