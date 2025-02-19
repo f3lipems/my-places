@@ -36,12 +36,11 @@ class GreatePlaces with ChangeNotifier {
 
   void addPlace(String title, File image) {
     final newPlace = Place(
-      id: Random().nextDouble.toString(),
+      id: DateTime.now().toString(),
       title: title,
       location: PlaceLocation(address: '', latitude: 0, longitude: 0),
       image: image,
     );
-    // _items.add(newPlace);
 
     AppDb.insert('places', {
       'id': newPlace.id,

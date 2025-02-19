@@ -17,11 +17,11 @@ class AppDb {
 
   static Future<void> insert(String table, Map<String, Object> data) async {
     final db = await AppDb.database();
-    await db.insert(
-      table,
-      data,
-      conflictAlgorithm: sql.ConflictAlgorithm.replace,
+    int id = await db.rawInsert(
+      'INSERT INTO places(id, title, image) VALUES(?, ?, ?)',
+      [data['id'], data['title'], data['image']],
     );
+    // print('id: $id');
   }
 
   static Future<List<Map<String, dynamic>>> getData(String table) async {
