@@ -36,6 +36,13 @@
 	<string>Picture needed</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Picture needed</string>
+	
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location needed</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location needed</string>
+
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
