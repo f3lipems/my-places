@@ -20,6 +20,8 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
   File? _pickedImage;
   LatLng? _pickedPosition;
 
+  bool activeSubmit = false;
+
   void _selectImage(File pickedImage) {
     setState(() {
       _pickedImage = pickedImage;
@@ -33,6 +35,9 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
   }
 
   bool isValidForm() {
+    print('Title: ' + _titleController.text.isNotEmpty.toString());
+    print('Image: ' + (_pickedImage != null).toString());
+    print('Position: ' + (_pickedPosition != null).toString());
     return _titleController.text.isNotEmpty && _pickedImage != null && _pickedPosition != null;
   }
 
@@ -68,11 +73,10 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                       decoration: InputDecoration(
                         labelText: 'Título',
                       ),
+                      onChanged: (_) => setState(() {}),
                     ),
                     ImageInput(onImageSelected: _selectImage),
-                    LocationInput(
-                      onSelectPlace: _selectLocation,
-                    ),
+                    LocationInput(onSelectPlace: _selectLocation),
                   ],
                 ),
               ),

@@ -21,7 +21,7 @@ class GreatePlaces with ChangeNotifier {
         id: item['id'],
         title: item['title'],
         image: File(item['image']),
-        location: PlaceLocation(address: '', latitude: 0, longitude: 0),
+        location: PlaceLocation(address: item['address'], latitude: item['latitude'], longitude: item['longitude']),
       ));
     }
     notifyListeners();
@@ -50,6 +50,9 @@ class GreatePlaces with ChangeNotifier {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path,
+      'latitude': newPlace.location.latitude,
+      'longitude': newPlace.location.longitude,
+      'address': newPlace.location.address,
     });
 
     loadPlaces();
