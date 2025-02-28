@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:my_places/screens/map_screen.dart';
 import 'package:my_places/utils/app_locations.dart';
@@ -27,15 +28,23 @@ class _LocationInputState extends State<LocationInput> {
   }
 
   Future<void> _selectOnMap() async {
-    final selectedLocation = await Navigator.of(context).push(
+    final LatLng selectedPosition = await Navigator.of(context).push(
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (ctx) => const MapScreen(),
       ),
     );
 
-    if (selectedLocation == null) return;
+    if (selectedPosition == null) return;
 
+    final staticMapImageUrl = AppLocations.generateLocationPreviewImage(
+      latitude: selectedPosition.latitude,
+      longitude: selectedPosition.longitude,
+    );
+
+    setState(() {
+      _previewImageUrl = staticMapImageUrl;
+    });
   }
 
   @override

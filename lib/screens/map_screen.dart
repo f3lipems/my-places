@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:my_places/models/place.dart';
+import 'package:my_places/utils/app_theme.dart';
 
 class MapScreen extends StatefulWidget {
-
   final PlaceLocation? initialLocation;
   final bool isReadOnly;
-  
+
   const MapScreen({
     super.key,
     this.initialLocation = const PlaceLocation(latitude: 37.419857, longitude: -122.078827, address: ''),
@@ -18,7 +18,6 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-
   LatLng? _pickedPosition;
 
   void _selectLocation(LatLng position) {
@@ -38,6 +37,17 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Selecione...'),
+        actions: [
+          if (!widget.isReadOnly)
+            IconButton(
+              icon: const Icon(Icons.check),
+              onPressed: _pickedPosition == null
+                  ? null
+                  : () {
+                      Navigator.of(context).pop(_pickedPosition);
+                    },
+            ),
+        ],
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
